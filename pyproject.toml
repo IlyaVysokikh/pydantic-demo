@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "pydantic-lecture"
+version = "0.1.0"
+description = ""
+authors = ["vysokikh_ia <vysokikh_ia@taximaxim.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pydantic = "^2.12.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
