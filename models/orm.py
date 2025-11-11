@@ -1,5 +1,5 @@
 import sqlalchemy as sa
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
 
 from pydantic import BaseModel, ConfigDict, Field, constr
 
@@ -19,7 +19,14 @@ class StudentModel(BaseModel):
     id: int
     name: constr(max_length=20)
 
+student_orm = StudentOrm(
+    id=1,
+    name='Ivan'
+)
+print(student_orm)
 
+student_model = StudentModel.model_validate(student_orm)
+print(student_model)
 
 # Reserved names
 class MyModel(BaseModel):
@@ -39,7 +46,7 @@ sql_model = SQLModel(metadata_={'key': 'val'}, id=1)
 
 pydantic_model = MyModel.model_validate(sql_model)
 
-print(pydantic_model.model_dump())
+# print(pydantic_model.model_dump())
 #> {'metadata': {'key': 'val'}}
-print(pydantic_model.model_dump(by_alias=True))
+# print(pydantic_model.model_dump(by_alias=True))
 #> {'metadata_': {'key': 'val'}}
